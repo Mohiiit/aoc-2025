@@ -10,5 +10,7 @@ edition = "2024"
 
 [workspace.dependencies]
 day_1 = { path = "crates/day_1", default-features = false }
-utils = {path = "crates/utils", default-features = false}
+utils = {path = "crates/utils", default-features = false }
+
+thiserror = "2.0.11"
 
