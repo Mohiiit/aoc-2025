@@ -1,0 +1,14 @@
+[workspace]
+members = ["crates/day_1", "crates/utils"]
+resolver = "2"
+
+
+[workspace.package]
+name = "aoc_2025"
+version = "0.1.0"
+edition = "2024"
+
+[workspace.dependencies]
+day_1 = { path = "crates/day_1", default-features = false }
+utils = {path = "crates/utils", default-features = false}
+
