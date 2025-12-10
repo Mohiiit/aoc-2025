@@ -1,56 +1,12 @@
+mod error;
+mod types;
+
 use std::env;
 use std::fs;
-use thiserror::Error;
 
-enum Part {
-    First,
-    Second,
-}
-#[derive(Debug, Error)]
-enum PartError {
-    #[error("Invalid Part: {0}")]
-    Invalid(String),
-    #[error("Missing Part")]
-    Missing,
-}
-
-#[derive(Debug, Error)]
-enum InputPathError {
-    #[error("Missing Input Path")]
-    Missing,
-    #[error("Unable to read input from: {0}")]
-    UnableToReadFrom(String),
-    #[error("Parse Error: {0}")]
-    ParseError(InstructionParseError),
-}
-
-#[derive(Debug, Error)]
-enum InstructionParseError {
-    #[error("Wrong Direction given: {0}")]
-    WrongDirection(char),
-    #[error("No Direction given")]
-    NoDirection,
-    #[error("Steps parsing failed")]
-    StepsParsingFailed,
-}
-
-enum Direction {
-    Left,
-    Right,
-}
-
-struct Instruction {
-    direction: Direction,
-    steps: u32,
-}
-fn parse_part(arg: Option<String>) -> Result<Part, PartError> {
-    match arg.as_deref() {
-        Some("1") => Ok(Part::First),
-        Some("2") => Ok(Part::Second),
-        Some(random) => Err(PartError::Invalid(random.to_string())),
-        None => Err(PartError::Missing),
-    }
-}
+use error::{InputPathError, InstructionParseError};
+use types::{Direction, Instruction};
+use utils::{Part, parse_part};
 
 fn parse_instruction(line: &str) -> Result<Instruction, InstructionParseError> {
     let first_char = line.chars().next();
