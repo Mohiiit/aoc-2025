@@ -12,6 +12,8 @@
 | b40c207 (Release) | 62.190709ms | 163.181416ms | Release build (optimized) |
 | 264dd1f (Debug) | 82.18825ms | 147.82875ms | Debug build - Candidate generation approach |
 | 264dd1f (Release) | 6.242208ms | 15.858208ms | Release build - Candidate generation approach |
+| 9ba3450 (Debug) | 82.832875ms | 147.79325ms | Debug build - using Box<dyn Solver> (dynamic dispatch) |
+| 9ba3450 (Release) | 10.778125ms | 17.0575ms | Release build - using Box<dyn Solver> (dynamic dispatch) |
 
 ## Notes
 

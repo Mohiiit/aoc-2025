@@ -63,7 +63,6 @@ fn find_power(mut num: u64) -> u32 {
     ans
 }
 
-
 struct PartOne;
 struct PartTwo;
 
@@ -109,11 +108,19 @@ fn main() -> Result<(), Box<dyn Error>> {
     let input: Vec<String> = env::args().collect();
     let part = parse_part(input.get(1).cloned())?;
     let question_input = parse_file(input.get(2).cloned())?;
-    let solver: Box<dyn Solver> = match part {
-        Part::First => Box::new(PartOne),
-        Part::Second => Box::new(PartTwo),
+
+    // dynamic dispatch can be used as well
+    // not a crazy time taken in the runtime tbh
+    // let solver: Box<dyn Solver> = match part {
+    //     Part::First => Box::new(PartOne),
+    //     Part::Second => Box::new(PartTwo),
+    // };
+    // let ans = solver.solve(&question_input);
+
+    let ans = match part {
+        Part::First => PartOne.solve(&question_input),
+        Part::Second => PartTwo.solve(&question_input),
     };
-    let ans = solver.solve(&question_input);
     println!("solution for the part: {:?} is: {:?}", part, ans);
     let time_taken = Instant::now() - start_time;
     println!("time taken by the code: {:?}", time_taken);
